@@ -65,6 +65,8 @@ function App() {
         <h1>Investment Calculator</h1>
       </header>
 
+      <p>testing</p>
+
       <CalculatorForm
         data={formData}
         onChange={handleInputChange}
