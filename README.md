@@ -1,1 +1,1 @@
-# Udemy-React-Course-Maximilian-Schwarzmuller
+### Exercises for the Maximilian Schwarzmuller's Udemy React course
