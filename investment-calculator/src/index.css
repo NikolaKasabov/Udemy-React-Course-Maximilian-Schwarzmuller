@@ -9,7 +9,6 @@ body {
   font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #242a28; */
   background: radial-gradient(#303b37, #1a1f1d);
   color: #e1eeeb;
 }
@@ -49,7 +48,7 @@ body {
   display: block;
   margin-bottom: 0.25rem;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
 }
