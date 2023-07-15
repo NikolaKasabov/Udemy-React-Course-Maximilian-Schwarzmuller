@@ -1,4 +1,6 @@
-function CalculatorForm({onChange, onReset, onSubmit}) {
+import Input from './Input';
+
+function CalculatorForm({ data, onChange, onReset, onSubmit }) {
   function handleInputChange(ev) {
     const { name, value } = ev.target;
     onChange(name, value);
@@ -12,26 +14,36 @@ function CalculatorForm({onChange, onReset, onSubmit}) {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="input-group">
-        <p>
-          <label htmlFor="current-savings">Current Savings ($)</label>
-          <input name='currentSavings' type="number" id="current-savings" onChange={handleInputChange} />
-        </p>
-        <p>
-          <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-          <input name='yearlyContribution' type="number" id="yearly-contribution" onChange={handleInputChange} />
-        </p>
+        <Input
+          type='number'
+          name='currentSavings'
+          label='Current Savings ($)'
+          value={data.currentSavings}
+          onChange={handleInputChange}
+        />
+        <Input
+          type='number'
+          name='yearlyContribution'
+          label='Yearly Savings ($)'
+          value={data.yearlyContribution}
+          onChange={handleInputChange}
+        />
       </div>
       <div className="input-group">
-        <p>
-          <label htmlFor="expected-return">
-            Expected Interest (%, per year)
-          </label>
-          <input name='expectedReturn' type="number" id="expected-return" onChange={handleInputChange} />
-        </p>
-        <p>
-          <label htmlFor="duration">Investment Duration (years)</label>
-          <input name='duration' type="number" id="duration" onChange={handleInputChange} />
-        </p>
+        <Input
+          type='number'
+          name='expectedReturn'
+          label='Expected Interest (%, per year)'
+          value={data.expectedReturn}
+          onChange={handleInputChange}
+        />
+        <Input
+          type='number'
+          name='duration'
+          label='Investment Duration (years)'
+          value={data.duration}
+          onChange={handleInputChange}
+        />
       </div>
       <p className="actions">
         <button type="reset" className="buttonAlt" onClick={onReset}>

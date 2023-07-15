@@ -65,7 +65,12 @@ function App() {
         <h1>Investment Calculator</h1>
       </header>
 
-      <CalculatorForm onChange={handleInputChange} onReset={handleFormReset} onSubmit={handleFormSubmit} />
+      <CalculatorForm
+        data={formData}
+        onChange={handleInputChange}
+        onReset={handleFormReset}
+        onSubmit={handleFormSubmit}
+      />
 
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
