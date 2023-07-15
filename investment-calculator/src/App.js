@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import logo from './assets/investment-calculator-logo.png';
 import CalculatorForm from './components/CalculatorForm';
+import Table from './components/Table';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -11,10 +12,12 @@ function App() {
     duration: '',
   });
 
+  const [tableData, setTableData] = useState([]);
+
   function handleInputChange(name, value) {
     setFormData(old => ({
       ...old,
-      [name]: +value,
+      [name]: value,
     }));
   }
 
@@ -25,22 +28,25 @@ function App() {
       expectedReturn: '',
       duration: '',
     });
+
+    setTableData([]);
   }
 
   function handleFormSubmit() {
+    if (!formData.currentSavings || !formData.yearlyContribution || !formData.expectedReturn || !formData.duration) {
+      return;
+    }
 
+    setTableData(calculateHandler(formData));
   }
 
-  const calculateHandler = (userInput) => {
-    // Should be triggered when form is submitted
-    // You might not directly want to bind it to the submit event on the form though...
-
+  function calculateHandler(userInput) {
     const yearlyData = []; // per-year results
 
-    let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
-    const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
-    const expectedReturn = +userInput['expected-return'] / 100;
-    const duration = +userInput['duration'];
+    let currentSavings = +userInput.currentSavings; // feel free to change the shape of this input object!
+    const yearlyContribution = +userInput.yearlyContribution; // as mentioned: feel free to change the shape...
+    const expectedReturn = +userInput.expectedReturn / 100;
+    const duration = +userInput.duration;
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
@@ -50,12 +56,20 @@ function App() {
         // feel free to change the shape of the data pushed to the array!
         year: i + 1,
         yearlyInterest: yearlyInterest,
-        savingsEndOfYear: currentSavings,
+        totalSavings: currentSavings,
         yearlyContribution: yearlyContribution,
       });
+
+      if (i === 0) {
+        yearlyData[i].totalInterest = yearlyData[i].yearlyInterest;
+        yearlyData[i].investedCapital = +formData.currentSavings + yearlyData[i].yearlyContribution;
+      } else {
+        yearlyData[i].totalInterest = yearlyData[i - 1].totalInterest + yearlyData[i].yearlyInterest;
+        yearlyData[i].investedCapital = yearlyData[i - 1].investedCapital + yearlyData[i].yearlyContribution;
+      }
     }
 
-    // do something with yearlyData ...
+    return yearlyData;
   };
 
   return (
@@ -72,29 +86,10 @@ function App() {
         onSubmit={handleFormSubmit}
       />
 
-      {/* Todo: Show below table conditionally (only once result data is available) */}
-      {/* Show fallback text if no data is available */}
-
-      <table className="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Total Savings</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>YEAR NUMBER</td>
-            <td>TOTAL SAVINGS END OF YEAR</td>
-            <td>INTEREST GAINED IN YEAR</td>
-            <td>TOTAL INTEREST GAINED</td>
-            <td>TOTAL INVESTED CAPITAL</td>
-          </tr>
-        </tbody>
-      </table>
+      {tableData.length > 0
+        ? <Table data={tableData} />
+        : <p className='message'>No entered data.</p>
+      }
     </div>
   );
 }
