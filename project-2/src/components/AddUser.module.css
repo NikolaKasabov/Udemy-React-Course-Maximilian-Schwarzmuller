@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formControl label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.formControl input {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  background-color: #3a0544;
+  color: white;
+  border: 1px solid #B7A0BD;
+  cursor: pointer;
+  font-family: inherit;
+}
