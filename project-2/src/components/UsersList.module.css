@@ -1,0 +1,12 @@
+.usersList {
+  list-style: none;
+}
+
+.user {
+  padding: 0.5rem;
+  border: 1px solid #C6C5C6;
+}
+
+.user:not(:first-child) {
+  margin-top: 0.5rem;
+}

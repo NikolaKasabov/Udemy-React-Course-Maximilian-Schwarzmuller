@@ -4,8 +4,8 @@ function AddUser({values, onChange, onSubmit}) {
   return (
     <form onSubmit={onSubmit} className={classes.form}>
       <div className={classes.formControl}>
-        <label htmlFor="username">Username</label>
-        <input type="text" id='username' name='username' value={values?.username} onChange={onChange} />
+        <label htmlFor="name">Username</label>
+        <input type="text" id='name' name='name' value={values?.name} onChange={onChange} />
       </div>
       <div className={classes.formControl}>
         <label htmlFor="age">Age (Years)</label>

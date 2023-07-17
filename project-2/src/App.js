@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 import Card from './components/Card';
 import classes from './App.module.css';
 import AddUser from './components/AddUser';
+import UsersList from './components/UsersList';
 
 function App() {
+  const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -20,6 +23,16 @@ function App() {
 
   function handleSubmit(ev) {
     ev.preventDefault();
+
+    setUsers(old => ([
+      { id: nanoid(), ...formData },
+      ...old,
+    ]));
+
+    setFormData({
+      name: '',
+      age: '',
+    });
   }
 
   return (
@@ -31,6 +44,12 @@ function App() {
           onSubmit={handleSubmit}
         />
       </Card>
+
+      {users.length > 0 && (
+        <Card className={classes.usersCard}>
+          <UsersList users={users} />
+        </Card>
+      )}
     </div>
   );
 }
