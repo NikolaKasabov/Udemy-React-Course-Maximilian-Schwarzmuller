@@ -1,3 +1,4 @@
+import Button from './Button';
 import Card from './Card';
 import classes from './Modal.module.css';
 
@@ -9,7 +10,7 @@ function Modal({message, onClose}) {
         <h4 className={classes.title}>Invalid Input</h4>
         <div className={classes.content}>{message}</div>
         <div className={classes.actions}>
-          <button className={classes.button} onClick={onClose}>Okay</button>
+          <Button onClick={onClose}>Okay</Button>
         </div>
       </Card>
     </>

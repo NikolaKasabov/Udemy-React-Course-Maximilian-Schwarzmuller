@@ -1,4 +1,5 @@
 import classes from './AddUser.module.css';
+import Button from './Button';
 
 function AddUser({values, onChange, onSubmit}) {
   return (
@@ -12,7 +13,7 @@ function AddUser({values, onChange, onSubmit}) {
         <input type="number" id='age' name='age' value={values?.age} onChange={onChange} />
       </div>
       <div className={classes.actions}>
-        <button type='submit' className={classes.button}>Add User</button>
+        <Button onClick={onSubmit}>Add User</Button>
       </div>
     </form>
   );
