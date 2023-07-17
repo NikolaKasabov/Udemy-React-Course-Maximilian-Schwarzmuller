@@ -1,4 +1,5 @@
 import Input from './Input';
+import classes from './CalculatorForm.module.css';
 
 function CalculatorForm({ data, onChange, onReset, onSubmit }) {
   function handleInputChange(ev) {
@@ -12,8 +13,8 @@ function CalculatorForm({ data, onChange, onReset, onSubmit }) {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="input-group">
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <div className={classes['input-group']}>
         <Input
           type='number'
           name='currentSavings'
@@ -29,7 +30,7 @@ function CalculatorForm({ data, onChange, onReset, onSubmit }) {
           onChange={handleInputChange}
         />
       </div>
-      <div className="input-group">
+      <div className={classes['input-group']}>
         <Input
           type='number'
           name='expectedReturn'
@@ -45,11 +46,11 @@ function CalculatorForm({ data, onChange, onReset, onSubmit }) {
           onChange={handleInputChange}
         />
       </div>
-      <p className="actions">
-        <button type="reset" className="buttonAlt" onClick={onReset}>
+      <p className={classes.actions}>
+        <button type="reset" className={classes.buttonAlt} onClick={onReset}>
           Reset
         </button>
-        <button type="submit" className="button">
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>
