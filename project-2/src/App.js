@@ -5,6 +5,7 @@ import Card from './components/Card';
 import classes from './App.module.css';
 import AddUser from './components/AddUser';
 import UsersList from './components/UsersList';
+import Modal from './components/Modal';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -12,6 +13,7 @@ function App() {
     name: '',
     age: '',
   });
+  const [error, setError] = useState('');
 
   function handleChange(ev) {
     const { name, value } = ev.target;
@@ -24,6 +26,16 @@ function App() {
   function handleSubmit(ev) {
     ev.preventDefault();
 
+    if (!formData.name || !formData.age) {
+      setError('Please enter a valid name and age (non-empty values).');
+      return;
+    }
+
+    if (+formData.age < 1) {
+      setError('Please enter a valid age (> 0).');
+      return;
+    }
+
     setUsers(old => ([
       { id: nanoid(), ...formData },
       ...old,
@@ -33,6 +45,10 @@ function App() {
       name: '',
       age: '',
     });
+  }
+
+  function handleModalClose() {
+    setError('');
   }
 
   return (
@@ -50,6 +66,8 @@ function App() {
           <UsersList users={users} />
         </Card>
       )}
+
+      {error && <Modal message={error} onClose={handleModalClose} />}
     </div>
   );
 }

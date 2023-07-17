@@ -1,0 +1,43 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contentCard {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+}
+
+.title {
+  padding: 1rem;
+  background-color: #3a0544;
+  color: white;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  background-color: #3a0544;
+  color: white;
+  border: 1px solid #B7A0BD;
+  cursor: pointer;
+  font-family: inherit;
+}
