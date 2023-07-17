@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import logo from './assets/investment-calculator-logo.png';
 import CalculatorForm from './components/CalculatorForm';
 import Table from './components/Table';
+import Header from './components/Header';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -74,10 +74,7 @@ function App() {
 
   return (
     <div>
-      <header className="header">
-        <img src={logo} alt="logo" />
-        <h1>Investment Calculator</h1>
-      </header>
+      <Header />
 
       <CalculatorForm
         data={formData}
